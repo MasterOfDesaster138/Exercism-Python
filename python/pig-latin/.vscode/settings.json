@@ -1,0 +1,31 @@
+{
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*_test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "devdocs-adapter.docsets": [
+        "bootstrap~5",
+        "bootstrap~4",
+        "bootstrap~3",
+        "dart~1",
+        "django~4.1",
+        "docker",
+        "flask~2.2",
+        "javascript",
+        "mariadb",
+        "matplotlib~3.6",
+        "numpy~1.23",
+        "pandas~1",
+        "postgresql~15",
+        "python~3.11",
+        "r",
+        "sqlite",
+        "tcl_tk"
+    ]
+}
