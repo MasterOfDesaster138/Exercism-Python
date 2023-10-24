@@ -14,33 +14,33 @@ und ein "ay" angehängt (z. B. "square" -> "aresquay").
 Regel 4: Wenn ein Wort ein "y" nach einem Konsonantencluster oder 
 als zweiten Buchstaben in einem Wort mit zwei Buchstaben enthält,
 bildet es einen Vokallaut (z. B. "rhythm" -> "ythmrhay", "my" -> "ymay").
-"""
+""" 
+# Sets based on the constraints
+VOWELS = {"a", "e", "i", "o", "u"}
+VOWELS_Y = {"a", "e", "i", "o", "u", "y"}
+SPECIALS = {"xr", "yt"}
+
 
 def translate(text):
-    VOCALS = ('a', 'e', 'i', 'o', 'u')    
-    
-# convert string to a list of characters for proper manipulation
-    characters = list(text)
+    # placeholder for the translation
+    piggyfied = []
 
-# implement rule 1
-    if text[0] in VOCALS or text[0:1] in ('xr', 'yt'):
-        translation = text + 'ay'
-    else: 
-# import rule 3
-        if text[1:2] == 'qu':
-            suffix = characters[:3] + 'ay'
-            translation = characters[3:] + suffix
-            return translation
-        else:    
-# implement rule 2            
-            consonants = ''
-            # extract the consonant cluster at the beginning of the string 
-            for char in characters:
-                if char not in VOCALS:
-                    consonants = consonants + char
-                    characters.remove(char)
-            suffix = consonants + 'ay'
-            translation = ''.join(characters, suffix)
-            return translation
+    # separate each word from the input and iterate through each word
+    for word in text.split():
+        # check if word starts with a vowel or another special constraint
+        if word[0] in VOWELS or word[0:2] in SPECIALS:
+            # append 'ay' if it matches the condition
+            piggyfied.append(word + "ay")
+            continue
 
-# implement rule 4
+        # start at the second character of the word
+        for pos in range(1, len(word)):
+            # check for vowel or the character 'y'
+            if word[pos] in VOWELS_Y:
+                # handle 'qu' as a single character
+                pos += 1 if word[pos] == 'u' and word[pos - 1] == "q" else 0
+                # append 'ay' after current position 
+                piggyfied.append(word[pos:] + word[:pos] + "ay")
+                break
+
+    return " ".join(piggyfied)
