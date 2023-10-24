@@ -17,22 +17,30 @@ bildet es einen Vokallaut (z. B. "rhythm" -> "ythmrhay", "my" -> "ymay").
 """
 
 def translate(text):
-# convert string to list of characters for proper manipulation
+    VOCALS = ('a', 'e', 'i', 'o', 'u')    
+    
+# convert string to a list of characters for proper manipulation
     characters = list(text)
 
 # implement rule 1
-    if text[0] in ('a', 'e', 'i', 'o', 'u') or text[0:1] in ('xr', 'yt'):
+    if text[0] in VOCALS or text[0:1] in ('xr', 'yt'):
         translation = text + 'ay'
-
     else: 
 # import rule 3
         if text[1:2] == 'qu':
-            prefix = 
-            suffix = prefix
-            
+            suffix = characters[:3] + 'ay'
+            translation = characters[3:] + suffix
+            return translation
+        else:    
 # implement rule 2            
-        constant = characters.pop(0)
-        suffix = str(constant) + 'ay'
-        translation = constant.extend(suffix)
-        return str(translation)
+            consonants = ''
+            # extract the consonant cluster at the beginning of the string 
+            for char in characters:
+                if char not in VOCALS:
+                    consonants = consonants + char
+                    characters.remove(char)
+            suffix = consonants + 'ay'
+            translation = ''.join(characters, suffix)
+            return translation
 
+# implement rule 4
