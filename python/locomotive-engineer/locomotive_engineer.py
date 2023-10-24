@@ -10,7 +10,7 @@ def get_list_of_wagons(*args) -> list:
     return list(args)
 
 
-def fix_list_of_wagons(each_wagons_id, missing_wagons):
+def fix_list_of_wagons(each_wagons_id: list, missing_wagons: list) -> list:
     """Fix the list of wagons.
     Implement a function fix_list_of_wagons() that takes two lists containing wagon IDs. 
     It should reposition the first two items of the first list to the end, 
@@ -25,14 +25,21 @@ def fix_list_of_wagons(each_wagons_id, missing_wagons):
     return [locomotive, *missing_wagons, *rest, one, two]
 
 
-def add_missing_stops(route: dict, **stops):
+def add_missing_stops(route: dict, **stops) -> dict:
     """Add missing stops to route dict.
+    Your function should then return 
+    the routing dict updated with an additional key 
+    that holds a list of all the added stops in order.
 
     :param route: dict - the dict of routing information.
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
-    pass
+    # get a list of all stops 
+    stop_list = list(stops.values())
+    # add the list to the route dict
+    route["stops"] = stop_list
+    return route
 
 
 def extend_route_information(route, more_route_information):
