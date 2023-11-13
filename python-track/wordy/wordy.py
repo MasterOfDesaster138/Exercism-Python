@@ -39,15 +39,14 @@ def answer(question: str) -> int:
 
     # Search for numbers (including negative numbers)
     numbers = [int(match) for match in re.findall(r"(-?\d+)", question)]
-    if not numbers:
-        raise ValueError(err2)  # No numbers found in the question 
-
     # Search for all valid operators
     operators = re.findall(r'(plus|minus|multiplied by|divided by)', question)
    
     
     # Remove unnecessary words and punctuation
-    question = question.removesuffix('?').removeprefix('What is ').replace('by', '')
+    question = question.removesuffix('?').removeprefix('What is').replace('by', '')
+    if not question: raise ValueError(err2)
+    elif not numbers: raise ValueError(err1)
     # Split the question into words into a list
     text = question.split()
     # check if the string is empty
