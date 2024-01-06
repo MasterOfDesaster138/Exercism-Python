@@ -14,7 +14,7 @@
     return anagrams """
     
     
-def find_anagrams(word: str, candidates: list[str]) -> list[str]:
+def find_anagrams(word: str, candidates: list[str]):
     word_chars = sorted(list(word.lower()))
     return [candidate for candidate in candidates if sorted(list(candidate.lower())) == word_chars and candidate.lower() != word.lower()]
 
